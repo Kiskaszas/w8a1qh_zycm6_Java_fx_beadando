@@ -1,0 +1,13 @@
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+    <top>
+        <MenuBar>
+            <Menu text="Menus">
+                <MenuItem fx:id="databaseMenuItem" text="Database Operations"/>
+                <MenuItem fx:id="soapMenuItem" text="SOAP Client"/>
+
+                <MenuItem fx:id="forexMenuItem" text="Forex API"/>
+                <MenuItem fx:id="parallelMenuItem" text="Parallel Execution"/>
+            </Menu>
+        </MenuBar>
+    </top>
+</BorderPane>
