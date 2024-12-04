@@ -1,7 +1,7 @@
 package org.example.services;
 
-import soap.MNBArfolyamServiceSoap;
-import soap.MNBArfolyamServiceSoapImpl;
+import org.example.soap.MNBArfolyamServiceSoap;
+import org.example.soap.MNBArfolyamServiceSoapImpl;
 
 public class SoapClientService {
 
