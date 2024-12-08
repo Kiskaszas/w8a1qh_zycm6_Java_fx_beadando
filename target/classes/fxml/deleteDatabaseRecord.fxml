@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableView?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ComboBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.DatabaseController">
+    <center>
+        <TableView fx:id="tableView">
+            <!--<columns>
+                <TableColumn text="ID" fx:id="belepesColumnId"/>
+                <TableColumn text="Dátum" fx:id="columnDatum"/>
+                <TableColumn text="Kezdés" fx:id="columnKezdes"/>
+                <TableColumn text="Típus" fx:id="columnTipus"/>
+                <TableColumn text="Belépő" fx:id="columnBelepo"/>
+            </columns>-->
+            <columns>
+                <TableColumn text="Belepes id" fx:id="belepesColumnId"/>
+                <TableColumn text="Időpont" fx:id="belepesColumnIdopont"/>
+                <TableColumn text="Belépők száma" fx:id="columnBelepo"/>
+                <TableColumn text="Néző neve" fx:id="columnNezoNeve"/>
+                <TableColumn text="Férfi" fx:id="columnNezoIsFerfi"/>
+                <TableColumn text="Bérletes" fx:id="columnNezoBerletes"/>
+                <TableColumn text=" Meccs Dátum" fx:id="columnDatum"/>
+                <TableColumn text="Meccs Kezdés" fx:id="columnKezdes"/>
+                <TableColumn text="Meccs Típus" fx:id="columnTipus"/>
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <HBox spacing="10" alignment="CENTER" style="-fx-padding: 10;">
+            <TextField fx:id="belepesIdField" promptText="Id" disable="true"/>
+            <!--<TextField fx:id="datumField" promptText="Dátum (YYYY-MM-DD)" disable="true"/>
+            <TextField fx:id="kezdesField" promptText="Kezdés (HH:MM)" disable="true"/>
+            <Label text="Típus:" />
+            <ComboBox fx:id="typeCombo" disable="true">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Bajnoki" />
+                        <String fx:value="Kupa" />
+                        <String fx:value="Barátságos" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <TextField fx:id="belepoField" promptText="Belépő" disable="true"/>-->
+            <Button text="Meccs Törlése" onAction="#deleteRecord"/>
+        </HBox>
+    </bottom>
+</BorderPane>

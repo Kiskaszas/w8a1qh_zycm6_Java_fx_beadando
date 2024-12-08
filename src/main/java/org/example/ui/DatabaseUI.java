@@ -32,7 +32,8 @@ public class DatabaseUI {
 
     private static BorderPane loadFXML(String fxmlPath) {
         try {
-            FXMLLoader loader = new FXMLLoader(DatabaseUI.class.getResource(fxmlPath));
+            FXMLLoader loader = new FXMLLoader(DatabaseUI.class.getResource("/fxml/readFromDatabase.fxml"));
+            //FXMLLoader loader = new FXMLLoader(DatabaseUI.class.getResource(fxmlPath));
             return loader.load();
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.TableView?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.DatabaseController">
+    <center>
+        <TableView fx:id="tableView">
+            <!--<columns>
+                <TableColumn text="ID" fx:id="columnId"/>
+                <TableColumn text="Dátum" fx:id="columnDatum"/>
+                <TableColumn text="Kezdés" fx:id="columnKezdes"/>
+                <TableColumn text="Típus" fx:id="columnTipus"/>
+                <TableColumn text="Belépő" fx:id="columnBelepo"/>
+            </columns>-->
+            <columns>
+                <TableColumn text="Belepes id" fx:id="belepesColumnId"/>
+                <TableColumn text="Időpont" fx:id="belepesColumnIdopont"/>
+                <TableColumn text="Belépők száma" fx:id="columnBelepo"/>
+                <TableColumn text="Néző neve" fx:id="columnNezoNeve"/>
+                <TableColumn text="Férfi" fx:id="columnNezoIsFerfi"/>
+                <TableColumn text="Bérletes" fx:id="columnNezoBerletes"/>
+                <TableColumn text=" Meccs Dátum" fx:id="columnDatum"/>
+                <TableColumn text="Meccs Kezdés" fx:id="columnKezdes"/>
+                <TableColumn text="Meccs Típus" fx:id="columnTipus"/>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>
