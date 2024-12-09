@@ -82,9 +82,38 @@ public class App extends Application {
 
         feladat_3.getItems().addAll(gomb);
 
+        Menu forexMenu = new Menu("FOREX");
+
+        MenuItem accountInfoItem = new MenuItem("Számlainformációk");
+        accountInfoItem.setOnAction(event -> openForexAccountInfoUI());
+
+        MenuItem currentPricesItem = new MenuItem("Aktuális árak");
+        currentPricesItem.setOnAction(event -> openForexCurrentPricesUI());
+
+        MenuItem historicalPricesItem = new MenuItem("Historikus árak");
+        historicalPricesItem.setOnAction(event -> openForexHistoricalPricesUI());
+
+        MenuItem openPositionItem = new MenuItem("Pozíció nyitás");
+        openPositionItem.setOnAction(event -> openForexOpenPositionUI());
+
+        MenuItem closePositionItem = new MenuItem("Pozíció zárás");
+        closePositionItem.setOnAction(event -> openForexClosePositionUI());
+
+        MenuItem openPositionsItem = new MenuItem("Nyitott pozíciók");
+        openPositionsItem.setOnAction(event -> openForexOpenPositionsUI());
+
+        forexMenu.getItems().addAll(
+                accountInfoItem,
+                currentPricesItem,
+                historicalPricesItem,
+                openPositionItem,
+                closePositionItem,
+                openPositionsItem
+        );
+
         menu.getItems().addAll(databaseMenu, databaseFilteredMenu, databaseInsertMenu, databaseUpdateMenu, databaseDeleteMenu);
         MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().addAll(menu, soapMenu, feladat_3);
+        menuBar.getMenus().addAll(menu, soapMenu, feladat_3, forexMenu);
         return menuBar;
     }
 
@@ -98,8 +127,43 @@ public class App extends Application {
         }
     }
 
+    private void openForexAccountInfoUI() {
+        navigateTo("/fxml/forex_account_info.fxml");
+    }
+
+    private void openForexCurrentPricesUI() {
+        navigateTo("/fxml/forex_current_prices.fxml");
+    }
+
+    private void openForexHistoricalPricesUI() {
+        navigateTo("/fxml/forex_historical_prices.fxml");
+    }
+
+    private void openForexOpenPositionUI() {
+        navigateTo("/fxml/forex_open_position.fxml");
+    }
+
+    private void openForexClosePositionUI() {
+        navigateTo("/fxml/forex_close_position.fxml");
+    }
+
+    private void openForexOpenPositionsUI() {
+        navigateTo("/fxml/forex_open_positions.fxml");
+    }
+
+    private void navigateTo(String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            BorderPane layout = loader.load();
+            root.setCenter(layout);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     private void navigateTo(BorderPane view) {
-        // A menü hozzáadása minden nézethez
         view.setTop(createMenuBar());
         primaryStage.getScene().setRoot(view);
     }

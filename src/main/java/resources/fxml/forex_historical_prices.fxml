@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.ForexHistoricalPricesController">
+    <top>
+        <HBox spacing="10" BorderPane.alignment="CENTER">
+            <ComboBox fx:id="currencyPairComboBox" promptText="Válassz devizapárt" />
+            <DatePicker fx:id="startDatePicker" promptText="Kezdő dátum" />
+            <DatePicker fx:id="endDatePicker" promptText="Záró dátum" />
+            <Button text="Adatok lekérése" onAction="#onGetHistoricalDataClicked" />
+        </HBox>
+    </top>
+    <center>
+        <TableView fx:id="historicalDataTable">
+            <columns>
+                <TableColumn text="Dátum" fx:id="dateColumn">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="date" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Ár" fx:id="priceColumn">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="price" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <LineChart fx:id="priceChart" prefWidth="600" prefHeight="400">
+            <xAxis>
+                <CategoryAxis label="Dátum" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis label="Ár" />
+            </yAxis>
+        </LineChart>
+    </bottom>
+</BorderPane>

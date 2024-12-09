@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.ForexOpenPositionController">
+    <top>
+        <HBox spacing="10" BorderPane.alignment="CENTER">
+            <ComboBox fx:id="currencyPairComboBox" promptText="Válassz devizapárt" />
+            <TextField fx:id="amountField" promptText="Mennyiség" />
+            <ComboBox fx:id="directionComboBox" promptText="Irány">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Vétel" />
+                        <String fx:value="Eladás" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <Button text="Pozíció nyitása" onAction="#onOpenPositionClicked" />
+        </HBox>
+    </top>
+</BorderPane>

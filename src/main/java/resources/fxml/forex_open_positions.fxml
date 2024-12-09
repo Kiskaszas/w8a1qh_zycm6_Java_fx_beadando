@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.ForexOpenPositionsController">
+    <center>
+        <TableView fx:id="openPositionsTable">
+            <columns>
+                <TableColumn text="Pozíció ID" fx:id="positionIdColumn" />
+                <TableColumn text="Devizapár" fx:id="currencyPairColumn" />
+                <TableColumn text="Mennyiség" fx:id="amountColumn" />
+                <TableColumn text="Irány" fx:id="directionColumn" />
+                <TableColumn text="Ár" fx:id="priceColumn" />
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

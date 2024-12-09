@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.ForexCurrentPricesController">
+    <top>
+        <HBox spacing="10" BorderPane.alignment="CENTER">
+            <ComboBox fx:id="currencyPairComboBox" promptText="Válassz devizapárt" />
+            <Button text="Aktuális ár lekérése" onAction="#onGetPriceClicked" />
+        </HBox>
+    </top>
+    <center>
+        <TextArea fx:id="priceDisplay" editable="false" wrapText="true" />
+    </center>
+</BorderPane>
