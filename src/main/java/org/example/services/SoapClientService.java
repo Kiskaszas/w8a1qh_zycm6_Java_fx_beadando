@@ -8,7 +8,6 @@ public class SoapClientService {
     private final MNBArfolyamServiceSoap soapClient;
 
     public SoapClientService() {
-        // A generált SOAP implementáció inicializálása
         soapClient = new MNBArfolyamServiceSoapImpl().getCustomBindingMNBArfolyamServiceSoap();
     }
 

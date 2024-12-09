@@ -8,9 +8,9 @@ public class ForexPosition {
 
     private double quantity;
 
-    private String direction; // "buy" or "sell"
+    private String direction;
 
-    private String status; // "open" or "closed"
+    private String status;
 
     public ForexPosition() {
     }

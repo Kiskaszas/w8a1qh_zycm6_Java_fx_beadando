@@ -5,11 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseUtil {
-
-    // SQLite adatbázis URL
     private static final String SQLITE_DB_URL = "jdbc:sqlite:adatok.sqlite";
 
-    // Kapcsolódás az SQLite adatbázishoz
     public static Connection getConnection() throws SQLException {
         try {
             return DriverManager.getConnection(SQLITE_DB_URL);
@@ -18,7 +15,6 @@ public class DatabaseUtil {
         }
     }
 
-    // Segédfüggvény a kapcsolat teszteléséhez
     public static void testConnection() {
         try (Connection connection = getConnection()) {
             if (connection != null) {

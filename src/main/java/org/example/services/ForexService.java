@@ -12,10 +12,8 @@ import java.util.Random;
 
 public class ForexService {
 
-    // Mock data generator
     private final Random random = new Random();
 
-    // Számlainformációk lekérése
     public List<AccountInfo> getAccountInfo() {
         List<AccountInfo> accounts = new ArrayList<>();
         accounts.add(new AccountInfo("ACC12345", 10000.0, "Standard"));
@@ -23,7 +21,6 @@ public class ForexService {
         return accounts;
     }
 
-    // Aktuális árak lekérése
     public String getCurrentPrice(String currencyPair) {
         return String.format("%.4f", 1 + random.nextDouble());
     }
@@ -42,19 +39,14 @@ public class ForexService {
         return historicalPrices;
     }
 
-    // Pozíció nyitása
     public void openPosition(String currencyPair, double amount, String direction) {
-        // Mock server response for opening a position
         System.out.println("Position opened: " + direction + " " + amount + " " + currencyPair);
     }
 
-    // Pozíció zárása
     public void closePosition(String positionId) {
-        // Mock server response for closing a position
         System.out.println("Position closed: ID " + positionId);
     }
 
-    // Nyitott pozíciók lekérése
     public List<OpenPosition> getOpenPositions() {
         List<OpenPosition> openPositions = new ArrayList<>();
         openPositions.add(new OpenPosition("POS123", "EUR/USD", 1000, "Buy", 1.2345));

@@ -20,7 +20,6 @@ public class DatabaseService {
         }
     }
 
-    //Belépés lekérdezése
     public List<DataRow> get100DataRow() {
         System.out.println("Adatbázis kapcsolata: " + connect());
         String query = "SELECT * FROM belepes " +
@@ -57,7 +56,6 @@ public class DatabaseService {
         return resultList;
     }
 
-    // Meccsek lekérdezése
     public List<Meccs> getAllMatches() {
         System.out.println("Adatbázis kapcsolata: " + connect());
         List<Meccs> matches = new ArrayList<>();
@@ -147,15 +145,9 @@ public class DatabaseService {
         }
     }
 
-    // Új rekord hozzáadása
     public boolean addRecord(DataRow dataRow) {
-        //todo: belépés, meccs és nézőkre 1 külön insertek létrehozása
-        //String insertNezoSql = "INSERT INTO nezo (id, nev, ferfi, berletes, ferfi_boolean, berletes_boolean) VALUES (?, ?, ?, ?, ?, ?)";
-        //String inserMeccsSql = "INSERT INTO meccs (id, datum, kezdes, tipus, belepo) VALUES (?, ?, ?, ?, ?)";
         String insertbelepesSql = "INSERT INTO belepes (id, nezoId, meccsId, idopont) VALUES (?, ?, ?, ?)";
 
-        //String lastMeccsIdSql = "select id from meccs order by id Desc limit 1";
-        //String lastNezoIdSql = "select id from nezo order by id Desc limit 1";
         String lastBelepesIdSql = "select id from belepes order by id Desc limit 1";
         String getMeccsIdByDatumIdoSql = "select id from meccs where datum = ? and kezdes = ?";
         String getNezoIdByNezoNevIsferfiSql = "select id from nezo where nev = ? and ferfi = ?";
@@ -165,20 +157,13 @@ public class DatabaseService {
             dataRow.setMeccsId(getMeccsIdByDatumIdo(dataRow.getDatum(), dataRow.getKezdes(), conn, getMeccsIdByDatumIdoSql));
             dataRow.setNezoId(getNezoIdByNezoNevIsferfiSql(dataRow.getNev(), dataRow.isFerfi()?"-1":"0", conn, getNezoIdByNezoNevIsferfiSql));
 
-            // insert folyamat végrehajtása
-            //PreparedStatement meccsPstmt = getMeccsPreparedStatement(dataRow, conn, inserMeccsSql, lastMeccsId);
-            //PreparedStatement nezoPstmt = getNezoPreparedStatement(dataRow, conn, insertNezoSql, lastNezoId);
             PreparedStatement belepesPstmt = getBelepesPreparedStatement(dataRow, conn, insertbelepesSql, lastBelepesId);
 
-            //boolean meccsRowsAffected = meccsPstmt.execute();
-            //boolean nezoRowsAffected = nezoPstmt.execute();
             boolean belepesRowsAffected = belepesPstmt.execute();
             if (!belepesRowsAffected){
                 addPlusOneBelepoForMeccs(conn, dataRow.getMeccsId());
             }
 
-            //meccsPstmt.close();
-            //nezoPstmt.close();
             belepesPstmt.close();
             conn.close();
             return !belepesRowsAffected;//ha false akkor nincs hiba
@@ -265,7 +250,6 @@ public class DatabaseService {
         }
     }
 
-    // Rekord frissítése
     public boolean updateRecord(Long id, String datum, String kezdes, int belepo) {
         String sql = "UPDATE meccs SET datum = ?, kezdes = ?, belepo = ? WHERE id = ?";
 
@@ -286,7 +270,6 @@ public class DatabaseService {
         }
     }
 
-    // Rekord törlése
     public boolean deleteRecord(Long id) {
         String sql = "DELETE FROM belepes WHERE id = " + id;
 

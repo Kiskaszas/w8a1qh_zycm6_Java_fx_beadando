@@ -20,11 +20,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage; // Inicializálás
+        this.primaryStage = primaryStage;
         try {
-            // Menü és fő ablak inicializálása
             MenuBar menuBar = createMenuBar();
-            //BorderPane root = new BorderPane(); // Alapértelmezett nézet
 
             root.setTop(menuBar);
 
@@ -46,21 +44,21 @@ public class App extends Application {
     }
 
     public MenuBar createMenuBar() {
-        Menu menu = new Menu("Navigáció");
+        Menu menu = new Menu("Adatbázis");
 
-        MenuItem databaseMenu = new MenuItem("olvas");//read
+        MenuItem databaseMenu = new MenuItem("olvas");
         databaseMenu.setOnAction(e -> navigateTo(DatabaseUI.createReadView()));
 
-        MenuItem databaseFilteredMenu = new MenuItem("olvas2");//szűrővel
+        MenuItem databaseFilteredMenu = new MenuItem("olvas2");
         databaseFilteredMenu.setOnAction(e -> navigateTo(DatabaseUI.createFilteredReadView()));
 
-        MenuItem databaseInsertMenu = new MenuItem("Írás");//add
+        MenuItem databaseInsertMenu = new MenuItem("Írás");
         databaseInsertMenu.setOnAction(e -> navigateTo(DatabaseUI.createInsertView()));
 
-        MenuItem databaseUpdateMenu = new MenuItem("Módosít");//módosít
+        MenuItem databaseUpdateMenu = new MenuItem("Módosít");
         databaseUpdateMenu.setOnAction(e -> navigateTo(DatabaseUI.createUpdateView()));
 
-        MenuItem databaseDeleteMenu = new MenuItem("Töröl");//töröl
+        MenuItem databaseDeleteMenu = new MenuItem("Töröl");
         databaseDeleteMenu.setOnAction(e -> navigateTo(DatabaseUI.createDeleteView()));
 
         Menu soapMenu = new Menu("SOAP");
