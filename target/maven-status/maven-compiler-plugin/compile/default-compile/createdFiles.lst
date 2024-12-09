@@ -24,6 +24,7 @@ org/example/soap/GetExchangeRatesResponseBody.class
 org/example/models/ForexPosition.class
 org/example/controllers/DatabaseControllerForUpdate.class
 org/example/soap/MNBArfolyamServiceSoapGetDateIntervalStringFaultFaultMessage.class
+org/example/controllers/SoapController.class
 org/example/models/ExchangeRate.class
 org/example/soap/GetCurrenciesResponseBody.class
 module-info.class

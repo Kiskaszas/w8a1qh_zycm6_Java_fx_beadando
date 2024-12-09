@@ -23,11 +23,6 @@
             <version>3.47.0.0</version>
         </dependency>
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.4.12</version>
-        </dependency>
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.32</version>
@@ -71,6 +66,21 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.14.0</version>
+        </dependency>
+
+        <!--soappróba-->
+
+        <!-- Metro JAX-WS Implementáció -->
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>rt</artifactId>
+            <version>4.0.2</version>
+        </dependency>
+        <!-- Egyéb függőségek -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.4.12</version>
         </dependency>
     </dependencies>
 

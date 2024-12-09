@@ -1,18 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.SoapController">
     <top>
-        <HBox spacing="10">
-            <TextField fx:id="filterField" promptText="Filter"/>
-            <Button text="Download All" onAction="#onDownloadAllClicked"/>
-            <Button text="Filtered Download" onAction="#onFilteredDownloadClicked"/>
-            <Button text="Show Graph" onAction="#onShowGraphClicked"/>
+        <HBox spacing="10" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <TextField fx:id="startDateField" promptText="Kezdő dátum (YYYY-MM-DD)"/>
+            <TextField fx:id="endDateField" promptText="Vég dátum (YYYY-MM-DD)"/>
+            <TextField fx:id="currenciesField" promptText="Pénznemek (pl. EUR, USD)"/>
         </HBox>
     </top>
     <center>
-        <TextArea fx:id="resultArea"/>
+        <TextArea fx:id="resultArea" editable="false" wrapText="true">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </TextArea>
     </center>
+    <bottom>
+        <HBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Button text="Összes adat letöltése" onAction="#onDownloadAllClicked"/>
+            <Button text="Szűrt adatok letöltése" onAction="#onFilteredDownloadClicked"/>
+            <Button text="Grafikon megjelenítése" onAction="#onShowGraphClicked"/>
+        </HBox>
+    </bottom>
 </BorderPane>
