@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.ForexAccountInfoController">
+    <center>
+        <TableView fx:id="accountTable">
+            <columns>
+                <TableColumn text="Számla ID" fx:id="accountIdColumn" />
+                <TableColumn text="Egyenleg" fx:id="balanceColumn" />
+                <TableColumn text="Típus" fx:id="typeColumn" />
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>
