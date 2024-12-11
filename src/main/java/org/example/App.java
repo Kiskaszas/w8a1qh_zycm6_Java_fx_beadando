@@ -117,7 +117,9 @@ public class App extends Application {
 
     private void openSoapClientUI() {
         try {
+            start(new Stage());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/soap.fxml"));
+            System.out.println(loader.getLocation().getPath().toString()+"-----------------------");
             BorderPane soapLayout = loader.load();
             root.setCenter(soapLayout);
         } catch (IOException e) {
@@ -151,6 +153,7 @@ public class App extends Application {
 
     private void navigateTo(String fxmlPath) {
         try {
+            start(new Stage());
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             BorderPane layout = loader.load();
             root.setCenter(layout);
@@ -169,6 +172,7 @@ public class App extends Application {
     @FXML
     public void showGomb() {
         try {
+            start(new Stage());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gomb.fxml"));
             Scene scene = new Scene(loader.load());
             Stage stage = new Stage();

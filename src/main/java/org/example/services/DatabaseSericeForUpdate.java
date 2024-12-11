@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DatabaseSericeForUpdate {
 
-    private static final String DB_URL = "jdbc:sqlite:db/adatok.sqlite";
+    private static final String DB_URL = "jdbc:sqlite:adatok.sqlite";
     private DatabaseUtil databaseUtil = new DatabaseUtil();
 
     public static List<Meccs> getAllMeccs() {

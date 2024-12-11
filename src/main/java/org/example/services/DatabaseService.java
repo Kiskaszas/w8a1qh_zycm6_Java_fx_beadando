@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DatabaseService {
 
-    private static final String DB_URL = "jdbc:sqlite:db/adatok.sqlite";
+    private static final String DB_URL = "jdbc:sqlite:adatok.sqlite";
 
     public boolean connect() {
         try (Connection conn = DriverManager.getConnection(DB_URL)) {

@@ -8,24 +8,33 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.example.App;
+import org.example.models.HistoricalPrice;
 import org.example.services.SoapClientService;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 
+import javax.swing.text.DateFormatter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringReader;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import static org.example.App.showPopup;
 
 public class SoapController {
 
+    @FXML
+    private DatePicker startDatePicker;
+    @FXML
+    private DatePicker endDatePicker;
     @FXML
     private TextField startDateField;
     @FXML
@@ -43,6 +52,24 @@ public class SoapController {
 
     private final SoapClientService soapClientService = new SoapClientService();
 
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    @FXML
+    public void initialize() {
+        startDatePicker.setOnAction(event -> {
+            if (startDatePicker.getValue() != null && endDatePicker.getValue() != null &&
+                    startDatePicker.getValue().isAfter(endDatePicker.getValue())) {
+                startDatePicker.setValue(endDatePicker.getValue().minusDays(1));
+            }
+        });
+        endDatePicker.setOnAction(event -> {
+            if (startDatePicker.getValue() != null && endDatePicker.getValue() != null &&
+                    startDatePicker.getValue().isAfter(endDatePicker.getValue())) {
+                endDatePicker.setValue(startDatePicker.getValue().plusDays(1));
+            }
+        });
+    }
+
     @FXML
     public void onDownloadAllClicked() {
         try {
@@ -56,9 +83,14 @@ public class SoapController {
 
     @FXML
     public void onFilteredDownloadClicked() {
-        String startDate = startDateField.getText();
-        String endDate = endDateField.getText();
+        if (startDatePicker.getValue().isAfter(endDatePicker.getValue())) {
+            endDatePicker.setValue(startDatePicker.getValue().plusDays(1));
+        }
+
+        String startDate = startDatePicker.getValue().format(formatter);
+        String endDate = endDatePicker.getValue().format(formatter);
         String currencies = currenciesField.getText();
+
 
         try {
             String data = soapClientService.getFilteredExchangeRates(startDate, endDate, currencies);
@@ -71,80 +103,76 @@ public class SoapController {
 
     @FXML
     public void onShowGraphClicked() {
-        String startDate = startDateField.getText();
-        String endDate = endDateField.getText();
+        String startDate = startDatePicker.getValue().format(formatter);
+        String endDate = endDatePicker.getValue().format(formatter);
         String currencies = currenciesField.getText();
-        String data = soapClientService.getFilteredExchangeRates(startDate, endDate, currencies);
 
-        List<XYChart.Data<String, Number>> chartData = processGraphData(data);
+        try {
+            String data = soapClientService.getFilteredExchangeRates(startDate, endDate, currencies);
+            List<XYChart.Data<String, Number>> chartData = processGraphData(data);
 
-        if (chartData.isEmpty()) {
-            resultArea.setText("Nincs megjeleníthető adat!");
-            return;
+            Stage stage = new Stage();
+            stage.setTitle("Árfolyam grafikon");
+
+            CategoryAxis xAxis = new CategoryAxis();
+            xAxis.setLabel("Dátum");
+            NumberAxis yAxis = new NumberAxis();
+            yAxis.setLabel("Árfolyam");
+
+            LineChart<String, Number> lineChart = new LineChart<>(xAxis, yAxis);
+            lineChart.setTitle("Árfolyamok");
+
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
+            series.setName(currencies);
+            series.getData().addAll(chartData);
+
+            lineChart.getData().add(series);
+
+            Scene scene = new Scene(lineChart, 800, 600);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            resultArea.setText("Hiba történt a grafikon megjelenítésekor: " + e.getMessage());
         }
-
-        Stage stage = new Stage();
-        stage.setTitle("Árfolyam grafikon");
-
-        CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Dátum");
-
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Árfolyam");
-
-        LineChart<String, Number> lineChart = new LineChart<>(xAxis, yAxis);
-        lineChart.setTitle("Árfolyamok");
-
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("Árfolyamok");
-        series.getData().addAll(chartData);
-
-        lineChart.getData().add(series);
-
-        Scene scene = new Scene(lineChart, 800, 600);
-        stage.setScene(scene);
-        stage.show();
     }
 
     private List<XYChart.Data<String, Number>> processGraphData(String data) {
         List<XYChart.Data<String, Number>> chartData = new ArrayList<>();
+
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            InputSource is = new InputSource(new StringReader(data));
-            Document doc = builder.parse(is);
-            doc.getDocumentElement().normalize();
+
+            Document doc = builder.parse(new java.io.ByteArrayInputStream(data.getBytes()));
 
             Element root = doc.getDocumentElement();
-            if (!"MNBExchangeRates".equals(root.getNodeName())) {
-                System.err.println("Nem megfelelő XML formátum: Gyökérelem nem MNBExchangeRates.");
-                return chartData;
-            }
 
             NodeList days = root.getElementsByTagName("Day");
 
             for (int i = 0; i < days.getLength(); i++) {
-                Node dayNode = days.item(i);
-                if (dayNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element dayElement = (Element) dayNode;
+                Element dayElement = (Element) days.item(i);
 
-                    String date = dayElement.getAttribute("date");
+                String date = dayElement.getAttribute("date");
 
-                    NodeList rates = dayElement.getElementsByTagName("Rate");
-                    if (rates.getLength() > 0) {
-                        Element rateElement = (Element) rates.item(0);
+                Element rateElement = (Element) dayElement.getElementsByTagName("Rate").item(0);
+                if(rateElement == null) {
+                showPopup("Pénznem", "A pénznem nincs meghatározva");
+                }
+                String value = rateElement.getTextContent().replace(",", "."); // Tizedesvessző cseréje ponttal
 
-                        String rateStr = rateElement.getTextContent().replace(",", ".");
-                        double rate = Double.parseDouble(rateStr);
-
-                        chartData.add(new XYChart.Data<>(date, rate));
-                    }
+                try {
+                    chartData.add(new XYChart.Data<>(date, Double.parseDouble(value)));
+                } catch (NumberFormatException e) {
+                    System.err.println("Hibás adat a grafikon feldolgozásakor: " + value);
                 }
             }
+
+            Collections.reverse(chartData);
         } catch (Exception e) {
-            System.err.println("Hiba az XML feldolgozása közben: " + e.getMessage());
             e.printStackTrace();
+            System.err.println("Hiba történt az XML adat feldolgozásakor: " + e.getMessage());
         }
+
         return chartData;
     }
 

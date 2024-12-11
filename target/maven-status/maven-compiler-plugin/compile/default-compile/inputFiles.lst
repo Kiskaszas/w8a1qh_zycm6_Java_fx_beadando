@@ -1,6 +1,5 @@
 /Users/kaszasviktor/giten-van/gitCurrent/w8a1qh_zycm6_Java_fx_beadando/src/main/java/org/example/soap/GetCurrencyUnitsResponseBody.java
 /Users/kaszasviktor/giten-van/gitCurrent/w8a1qh_zycm6_Java_fx_beadando/src/main/java/org/example/services/SoapClientService.java
-/Users/kaszasviktor/giten-van/gitCurrent/w8a1qh_zycm6_Java_fx_beadando/src/main/java/org/example/models/ExchangeRate.java
 /Users/kaszasviktor/giten-van/gitCurrent/w8a1qh_zycm6_Java_fx_beadando/src/main/java/org/example/models/AccountInfo.java
 /Users/kaszasviktor/giten-van/gitCurrent/w8a1qh_zycm6_Java_fx_beadando/src/main/java/org/example/soap/GetCurrentExchangeRatesRequestBody.java
 /Users/kaszasviktor/giten-van/gitCurrent/w8a1qh_zycm6_Java_fx_beadando/src/main/java/org/example/soap/MNBArfolyamServiceSoapGetExchangeRatesStringFaultFaultMessage.java
@@ -21,6 +20,7 @@
 /Users/kaszasviktor/giten-van/gitCurrent/w8a1qh_zycm6_Java_fx_beadando/src/main/java/org/example/soap/MNBArfolyamServiceSoapImpl.java
 /Users/kaszasviktor/giten-van/gitCurrent/w8a1qh_zycm6_Java_fx_beadando/src/main/java/org/example/models/ForexPosition.java
 /Users/kaszasviktor/giten-van/gitCurrent/w8a1qh_zycm6_Java_fx_beadando/src/main/java/org/example/soap/MNBArfolyamServiceSoapGetDateIntervalStringFaultFaultMessage.java
+/Users/kaszasviktor/giten-van/gitCurrent/w8a1qh_zycm6_Java_fx_beadando/src/main/java/org/example/Main.java
 /Users/kaszasviktor/giten-van/gitCurrent/w8a1qh_zycm6_Java_fx_beadando/src/main/java/org/example/models/MyTableModel.java
 /Users/kaszasviktor/giten-van/gitCurrent/w8a1qh_zycm6_Java_fx_beadando/src/main/java/org/example/controllers/ForexHistoricalPricesController.java
 /Users/kaszasviktor/giten-van/gitCurrent/w8a1qh_zycm6_Java_fx_beadando/src/main/java/org/example/controllers/SoapController.java

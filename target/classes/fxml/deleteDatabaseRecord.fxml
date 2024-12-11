@@ -34,7 +34,7 @@
     </center>
     <bottom>
         <HBox spacing="10" alignment="CENTER" style="-fx-padding: 10;">
-            <TextField fx:id="belepesIdField" promptText="Id" disable="true"/>
+            <TextField fx:id="belepesIdField" promptText="Idhoz kattincs a táblában" disable="true"/>
             <!--<TextField fx:id="datumField" promptText="Dátum (YYYY-MM-DD)" disable="true"/>
             <TextField fx:id="kezdesField" promptText="Kezdés (HH:MM)" disable="true"/>
             <Label text="Típus:" />

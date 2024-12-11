@@ -121,7 +121,9 @@
 
             tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
                 if (newSelection != null) {
-                    belepesIdField.setText(String.valueOf(newSelection.getBelepesId()));
+                    if(belepesIdField.getText() != null) {
+                        belepesIdField.setText(String.valueOf(newSelection.getBelepesId()));
+                    }
                     belepesColumnIdopont.setText(String.valueOf(newSelection.getIdopont()));
                     columnNezoNeve.setText(String.valueOf(newSelection.getNev()));
                     if (newSelection.isFerfi()){

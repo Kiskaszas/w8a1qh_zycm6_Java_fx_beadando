@@ -7,15 +7,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.geometry.Insets?>
 
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ComboBox?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.SoapController">
     <top>
         <HBox spacing="10" BorderPane.alignment="CENTER">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <TextField fx:id="startDateField" promptText="Kezdő dátum (YYYY-MM-DD)"/>
-            <TextField fx:id="endDateField" promptText="Vég dátum (YYYY-MM-DD)"/>
+            <!--<TextField fx:id="startDateField" promptText="Kezdő dátum (YYYY-MM-DD)"/>
+            <TextField fx:id="endDateField" promptText="Vég dátum (YYYY-MM-DD)"/>-->
             <TextField fx:id="currenciesField" promptText="Pénznemek (pl. EUR, USD)"/>
+            <DatePicker fx:id="startDatePicker" promptText="Kezdő dátum" />
+            <DatePicker fx:id="endDatePicker" promptText="Záró dátum" />
         </HBox>
     </top>
     <center>

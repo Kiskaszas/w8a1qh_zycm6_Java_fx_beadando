@@ -26,12 +26,12 @@ org/example/models/Meccs.class
 org/example/controllers/ForexClosePositionController.class
 org/example/models/Nezo.class
 org/example/soap/GetExchangeRatesResponseBody.class
+org/example/Main.class
 org/example/models/ForexPosition.class
 org/example/controllers/DatabaseControllerForUpdate.class
 org/example/soap/MNBArfolyamServiceSoapGetDateIntervalStringFaultFaultMessage.class
 org/example/controllers/SoapController.class
 org/example/models/HistoricalPrice.class
-org/example/models/ExchangeRate.class
 org/example/soap/GetCurrenciesResponseBody.class
 module-info.class
 org/example/soap/MNBArfolyamServiceSoap.class
