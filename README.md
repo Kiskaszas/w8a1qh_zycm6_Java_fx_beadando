@@ -52,7 +52,8 @@ Vagy futtathatod közvetlenül az IDE-ből a `App.java` osztályból.
 ## **GitHub verziókezelés**
 A projekt munkafolyamata a GitHub-on történik. Minden csapattag saját ágon dolgozik, és legalább 5 commit-ot kell végrehajtania.
 
-**Repo URL:** [[https://github.com/your-repo/fxtrader-data-manager](https://github.com/Kiskaszas/w8a1qh_zycm6_Java_fx_beadando/)]([https://github.com/your-repo/fxtrader-data-manager](https://github.com/Kiskaszas/w8a1qh_zycm6_Java_fx_beadando/))
+**Repo URL:**
+https://github.com/Kiskaszas/w8a1qh_zycm6_Java_fx_beadando/
 
 ## **Licenc**
 MIT License
